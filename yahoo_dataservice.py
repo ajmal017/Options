@@ -34,3 +34,4 @@ def options_chain_scrap(ticker,callput,date):
 
 #
 print(options_chain_scrap('AAPL', 'C','2019-11-22'))
+## TESTS
