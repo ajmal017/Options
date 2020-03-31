@@ -1,10 +1,10 @@
 from scipy.stats import norm
 import mibian
+
 '''http://www.codeandfinance.com/finding-implied-vol.html'''
 
 n = norm.pdf
 N = norm.cdf
-
 
 '''Purely for IV bisection method with Merton Model as it has dividends
 
@@ -37,6 +37,7 @@ def iv_newton(target_value, call_put, S, K, r, q, daystoexpiry):
     # value wasn't found, return best guess so far
     return sigma
 
+
 def bs_price(call_put, v, S, K, r, q, daystoexpiry):
     opt = mibian.Me([S, K, r, q, daystoexpiry], volatility=v)
     if call_put == 'call':
@@ -55,7 +56,7 @@ def iv_bisection(target_value, call_put, S, K, r, q, daystoexpiry):
 
 def iv_solver(target_value, call_put, S, K, r, q, daystoexpiry):
     print([target_value, call_put, S, K, r, q, daystoexpiry])
-    moneyness = K/S
+    moneyness = K / S
     threshold = 1.0e-5
     try:
         newton = iv_newton(target_value, call_put, S, K, r, q, daystoexpiry)
@@ -65,7 +66,7 @@ def iv_solver(target_value, call_put, S, K, r, q, daystoexpiry):
         new_opt_error = abs(target_value)
     if new_opt_error < threshold:
         return newton
-    elif moneyness > 0.9 and moneyness < 1.1:
+    elif 0.89 < moneyness < 1.11:
         try:
             print('bisect')
             bisect = iv_bisection(target_value, call_put, S, K, r, q, daystoexpiry)
@@ -80,4 +81,4 @@ def iv_solver(target_value, call_put, S, K, r, q, daystoexpiry):
     else:
         return 0
 
-print(iv_solver(22.25, 'put', 156.79, 180.0, 0.01, 0.0, 7))
+# print(iv_solver(22.25, 'put', 156.79, 180.0, 0.01, 0.0, 7))

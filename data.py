@@ -9,6 +9,7 @@ t='lbM7LwESNm8rXnx5zxJ8r-6f_-9JExT30'
 q = Questrade(grant_type=t, refresh_token=t)
 import data as d
 '''
+
 # cols = ['symbol', 'strike', 'Expiry', 'CallPut', 'bidPrice', 'askPrice', 'lastTradePrice', 'openPrice', 'volume',
 #         'openInterest', 'delta', 'gamma', 'vega', 'theta', 'moneyness', 'Days to Expiry', 'IV','delta_opt', 'gamma_opt', 'vega_opt', 'theta_opt']
 
@@ -19,9 +20,25 @@ today = datetime.datetime.today().date()
 
 '''Returns a symbol id for a given ticker; code below is used to ensure that it is unique for each ticker'''
 
+
+def retrieve_positions(q):
+    acc_num = q.accounts['accounts'][0]['number']
+    positions = q.account_positions(acc_num)['positions']
+    position_df = pd.DataFrame(positions)
+    return list(position_df['symbolId'])
+
+
+def retrieve_orders(q):
+    acc_num = q.accounts['accounts'][0]['number']
+    positions = q.account_orders(acc_num)['orders']
+    position_df = pd.DataFrame(positions)
+    position_df = position_df[['symbol', 'symbolId', 'side', 'limitPrice']].set_index(('symbol'))
+    return position_df
+
+
 def extract_symbolid(q, ticker):
     access_dict = q.symbols_search(prefix=ticker)['symbols']
-    total_len = len(access_dict) - 1
+    total_len = len(access_dict)
     symbol_id = []
     for i in range(total_len):
         if (access_dict[i]['isTradable'] == True) and (access_dict[i]['isQuotable'] == True):
@@ -33,11 +50,47 @@ def extract_symbolid(q, ticker):
         return symbol_id
 
 
+def retrieve_mult_symbolid(q, alistticker):
+    newlist = []
+    for i in alistticker:
+        new_ticker = extract_symbolid(q, i)
+        if new_ticker != []:
+            newlist.append(new_ticker)
+    return newlist
+
+
+'''alist is either a list of tickers (in the case that sym_list is False or a list of symids
+    Returns: Dataframe of bid, ask, last, open, and pct change sorted
+    '''
+
+
+def retrieve_symbolid_list(q, df, alist = False):
+    if alist:
+        sym_list = retrieve_mult_symbolid(q, df)
+    else:
+        sym_list = list(df['symbolId'])
+    ticker_string = str(sym_list)[1:-1]
+    quote = q.markets_quotes(ids=ticker_string)['quotes']
+    df_live = pd.DataFrame(quote)[['symbol', 'bidPrice', 'askPrice', 'lastTradePrice', 'openPrice']].set_index('symbol')
+    if not alist:
+        merge_df = df_live.merge(df, how='inner', left_index=True, right_index=True)
+        final_df = merge_df
+        final_df['pct_chg'] = ((merge_df['lastTradePrice'] / merge_df['openPrice']) - 1) * 100
+    else:
+        final_df = df_live
+        final_df['pct_chg'] = ((df_live['lastTradePrice'] / df_live['openPrice']) - 1) * 100
+    if not alist:
+        final_df['abs_limit'] = abs(merge_df['lastTradePrice']-merge_df['limitPrice'])
+        final_df['pct_limit'] = abs(merge_df['limitPrice']/merge_df['lastTradePrice'] - 1)*100
+    return final_df
+
+
 '''Returns a dataframe with each ticker's option codes for each expiry'''
 
-def extract_opt_chain(q, ticker, date_lim='all',bod=False):
+
+def extract_opt_chain(q, ticker, date_lim='all', bod=False):
     symbol_id = extract_symbolid(q, ticker)
-    cur_price, cur_yield = get_price_yield(q, ticker,bod)
+    cur_price, cur_yield = get_price_yield(q, ticker, bod)
     opt_chain_ids = q.symbol_options(symbol_id)['optionChain']
     count = len(opt_chain_ids) - 1
     if (date_lim != 'all') and count > date_lim:
@@ -51,7 +104,7 @@ def extract_opt_chain(q, ticker, date_lim='all',bod=False):
         df = df.append(df_insert)
     df['moneyness'] = df['strikePrice'].apply(lambda x: float(x) / float(cur_price))
     df = df[(df['moneyness'] >= 0.75) & (df['moneyness'] <= 1.25)]
-    df.columns = ['Strike','Call Code','Put Code','Expiry','Moneyness']
+    df.columns = ['Strike', 'Call Code', 'Put Code', 'Expiry', 'Moneyness']
     return df
 
 
@@ -88,15 +141,14 @@ def opt_data(q, ticker, date_lim='all', bod=False):
         df = calls_df.append(puts_df)
         df['Expiry'] = i
         master_df = pd.concat([master_df, df])
-    master_df['strike'] = master_df['symbol'].apply(lambda x: u.strike_finder(ticker,x))
+    master_df['strike'] = master_df['symbol'].apply(lambda x: u.strike_finder(ticker, x))
     master_df['moneyness'] = master_df['strike'].apply(lambda x: float(x) / float(cur_price))
-    master_df['Days to Expiry'] = master_df['Expiry'].apply(lambda x: u.bus_days(today, u.date_converter(x)) - 1)
+    master_df['Days to Expiry'] = master_df['Expiry'].apply(lambda x: u.bus_days(today, u.date_converter(x)))
     master_df = master_df[(master_df['Days to Expiry'] > 0)]
     if bod:
-        master_df['Days to Expiry BOD'] = master_df['Days to Expiry'].apply(lambda x: x+1)
         master_df['IV'] = master_df.apply(
             lambda x: iv.iv_solver(x['openPrice'], x['CallPut'], cur_price, x['strike'], 0.01, cur_yield,
-                                   x['Days to Expiry BOD']), axis=1)
+                                   x['Days to Expiry']), axis=1)
     else:
         master_df['IV'] = master_df.apply(
             lambda x: iv.iv_solver(x['lastTradePrice'], x['CallPut'], cur_price, x['strike'], 0.01, cur_yield,
@@ -106,15 +158,4 @@ def opt_data(q, ticker, date_lim='all', bod=False):
     master_df['adj_time'] = master_df['Days to Expiry'].apply(lambda x: x / 252)
     return master_df[cols]
 
-def retrieve_positions(q):
-    acc_num = q.accounts['accounts'][0]['number']
-    positions = q.account_positions(acc_num)['positions']
-    position_df = pd.DataFrame(positions)
-    return position_df['symbolId']
-
-def retrieve_orders(q):
-    acc_num = q.accounts['accounts'][0]['number']
-    positions = q.account_orders(acc_num)['orders']
-    position_df = pd.DataFrame(positions)
-    return position_df['symbolId']
-
+## Make Watch List Snapper as this works
