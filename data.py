@@ -32,6 +32,7 @@ def retrieve_orders(q):
     acc_num = q.accounts['accounts'][0]['number']
     positions = q.account_orders(acc_num)['orders']
     position_df = pd.DataFrame(positions)
+    print(position_df)
     position_df = position_df[['symbol', 'symbolId', 'side', 'limitPrice']].set_index(('symbol'))
     return position_df
 
@@ -124,6 +125,14 @@ def get_price_yield(q, ticker, bod=False):
         cur_price = cur_price_data['lastTradePrice']
     return cur_price, cur_yield
 
+def get_bod_pchg(q,ticker):
+    sym_id = extract_symbolid(q, ticker)
+    cur_price_data = q.markets_quote(sym_id)['quotes'][0]
+    cur_price = cur_price_data['lastTradePrice']
+    open_price = cur_price_data['openPrice']
+    pchg =  cur_price/open_price - 1
+    return pchg
+
 
 def opt_data(q, ticker, date_lim='all', bod=False):
     opt_df = extract_opt_chain(q, ticker, date_lim)
@@ -144,14 +153,15 @@ def opt_data(q, ticker, date_lim='all', bod=False):
     master_df['strike'] = master_df['symbol'].apply(lambda x: u.strike_finder(ticker, x))
     master_df['moneyness'] = master_df['strike'].apply(lambda x: float(x) / float(cur_price))
     master_df['Days to Expiry'] = master_df['Expiry'].apply(lambda x: u.bus_days(today, u.date_converter(x)))
-    master_df = master_df[(master_df['Days to Expiry'] > 0)]
+    master_df = master_df[(master_df['Days to Expiry'] > 1)]
     if bod:
+        master_df['Adj Days to Exp'] = master_df['Days to Expiry'].apply(lambda x: x-u.pct_day_passed())
         master_df['IV'] = master_df.apply(
-            lambda x: iv.iv_solver(x['openPrice'], x['CallPut'], cur_price, x['strike'], 0.01, cur_yield,
-                                   x['Days to Expiry']), axis=1)
+            lambda x: iv.iv_solver(x['openPrice'], x['CallPut'], cur_price, x['strike'], 0.001, cur_yield,
+                                   x['Adj Days to Exp']), axis=1)
     else:
         master_df['IV'] = master_df.apply(
-            lambda x: iv.iv_solver(x['lastTradePrice'], x['CallPut'], cur_price, x['strike'], 0.01, cur_yield,
+            lambda x: iv.iv_solver(x['lastTradePrice'], x['CallPut'], cur_price, x['strike'], 0.001, cur_yield,
                                    x['Days to Expiry']), axis=1)
     master_df.dropna(subset=['IV'], inplace=True)
     master_df = master_df[master_df['IV'] > 1]

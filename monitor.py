@@ -1,46 +1,73 @@
+import time
 import data as d
 from questrade_api import Questrade
-import itertools
-import utils as u
+import watchlists as w
+import pandas as pd
+from datetime import datetime
+import vol as v
 
-five_g = ['INTC','QCOM','VZ','XLNX','NVDA','ADI','TMUS','MRVL','S','EXF.TO','AVGO','RCI.B.TO','FTG.TO']
-cad_tech = ['QUIS.VN','CDAY.TO','SHOP.TO','REAL.TO','CSU.TO','TCS.TO','BRAG.VN']
-biotech = ['APT','AHPI','CODX','INO','CBLI','BCYC','OPK','VIR','COCP','MRNA','SNY','GILD','BCRX','NVAX','LAKE','DVAX',
-           'GSK','NNVC','VXRP']
-rona = ['PRPL','TDOC','DPZ','WORK','ZM','CTXS','EBAY','NYT','TGT','ISRG','JNJ','CRWD','TEAM','RGR','CLX','SSTK','WMT',
-        'ZG','CPB','OKTA','JD','PFE','KR','ALRM','ZNGA','ATVI','AMZN','GRUB','NFLX','SONO','PTON','MTCH','CENT','FB',
-        'BABA','SIRI','TME','WIFI','YELP']
-disc = ['RRR','UA','BYD','LULU','NKE','DIS','MAR','BA','HLT','DAL','AAL','LUV','ALK','CZR','NCLH','CCL','RCL','ERI']
-cad_lt = ['VFF.TO','BIP.UN.TO','ACB.TO','DOL.TO','HMMJ.TO','WEED.TO','PZA.TO','RY.TO','AC.TO','ENB.TO','JWEL.TO',
-          'ATD.B.TO','EDGE.TO','CYBR.TO','SU.TO','MFC.TO','ATZ.TO','T.TO','HLF.TO','HEXO.TO','FTS.TO','SLF.TO','TD.TO']
-reits = ['DLR','SPG','WELL','BPY.UN.TO','NVU.UN.TO','MRT.UN.TO','IIP.UN.TO','REI.UN.TO','MI.UN.TO','SRU.UN.TO']
-us_lt = ['DPZ','AMT','SQ','HD','MU','AMD','MA','F','JPM','A','GS','TTD','TGT','SBUX','JNJ','TWTR','BAC','NVDA','ETFC',
-         'V','MCD','MSFT','ADBE','WMT','GM','AAPL','BRK.B','CVGW','SNAP','TU','FB','TSLA']
+pd.set_option('display.max_rows', 500)
 
-tot_list = u.remove_duplicates(list(itertools.chain.from_iterable([five_g,cad_tech,biotech,rona,disc,cad_lt,reits,us_lt])))
-
-def monitor(watchlist=[], orders=False):
-    t = input('Please enter api key:\n')
-    q = Questrade(grant_type=t, refresh_token=t)
+def monitor(q, watchlist=[], orders=False):
     if orders:
         my_orders = d.retrieve_orders(q)
         df = d.retrieve_symbolid_list(q, my_orders)
-        df = df[['lastTradePrice', 'openPrice', 'limitPrice','pct_chg', 'abs_limit', 'pct_limit']]
+        df = df[['lastTradePrice', 'openPrice', 'limitPrice', 'pct_chg', 'abs_limit', 'pct_limit']]
         df = df.sort_values('pct_limit', ascending=True)
     elif watchlist == []:
         return 'Error'
     else:
         df = d.retrieve_symbolid_list(q, watchlist, True)
-        df=df.sort_values('pct_chg', ascending=True)
+        df = df.sort_values('pct_chg', ascending=True)
     return df
 
-print(monitor([],True))
+
+def execute(q, freq, watchlist, orders):
+    print('Order Monitor')
+    try:
+        print(monitor([], True))
+    except:
+        print('Current Orders Error')
+    if any(isinstance(el, list) for el in watchlist):
+        for i in watchlist:
+            print("Current watchlist is %s" % i)
+            try:
+                print(monitor(q, i, orders))
+            except:
+                print('Error for watchlist')
+    else:
+        print(monitor(q, watchlist, orders))
+    time.sleep(freq)
+
+
+def repeat_monitor(freq, watchlist, orders=False):
+    t = input('Please enter api key:\n')
+    q = Questrade(grant_type=t, refresh_token=t)
+    seconds = freq * 60
+    print("Snapping data every %s minutes" % (freq))
+    while True:
+        now = datetime.now().strftime("%H:%M:%S")
+        print("Current time is %s" % (now))
+        execute(q, seconds, watchlist, orders)
+
+
+def pilot_monitor(pos_freq, pos_watchlist,opt_freq,opt_watchlist,rows = 10,date_lim = 4, orders=False):
+    t = input('Please enter api key:\n')
+    q = Questrade(grant_type=t, refresh_token=t)
+    pos_seconds = pos_freq * 60
+    opt_seconds = opt_freq * 60
+    print("Snapping positions data every %s minutes and options data every s% minutes" % (pos_freq,opt_freq))
+    while True:
+        now = datetime.now().strftime("%H:%M:%S")
+        print("Current time is %s" % (now))
+        execute(q, pos_seconds, pos_watchlist, orders)
+        if now.hour ==15:
+            v.execute(q,opt_seconds,opt_watchlist,rows,date_lim)
+
+pilot_monitor(5,w.all_watchlist,10,w.opt_list)
+# repeat_monitor(5, all_watchlist)
+# Checks orders
+# print(monitor([],True))
+
+# Gives snap of watchlist
 # print(monitor(five_g))
-# print(monitor(cad_tech))
-# print(monitor(biotech))
-# print(monitor(rona))
-# print(monitor(disc))
-# print(monitor(cad_lt))
-# print(monitor(reits))
-# print(monitor(us_lt))
-# print(monitor(tot_list))

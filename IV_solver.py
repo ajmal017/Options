@@ -55,7 +55,7 @@ def iv_bisection(target_value, call_put, S, K, r, q, daystoexpiry):
 
 
 def iv_solver(target_value, call_put, S, K, r, q, daystoexpiry):
-    print([target_value, call_put, S, K, r, q, daystoexpiry])
+    # print([target_value, call_put, S, K, r, q, daystoexpiry])
     moneyness = K / S
     threshold = 1.0e-5
     try:
@@ -68,7 +68,6 @@ def iv_solver(target_value, call_put, S, K, r, q, daystoexpiry):
         return newton
     elif 0.89 < moneyness < 1.11:
         try:
-            print('bisect')
             bisect = iv_bisection(target_value, call_put, S, K, r, q, daystoexpiry)
             bis_opt_error = abs(target_value - bs_price(call_put, bisect, S, K, r, q, daystoexpiry)[0])
         except:
