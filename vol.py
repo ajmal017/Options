@@ -4,7 +4,6 @@ import data as d
 import utils as u
 from questrade_api import Questrade
 import pandas as pd
-import monitor as m
 
 
 pd.set_option('display.max_rows', 500)

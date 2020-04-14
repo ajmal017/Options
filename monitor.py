@@ -64,8 +64,8 @@ def pilot_monitor(pos_freq, pos_watchlist,opt_freq,opt_watchlist,rows = 10,date_
         if now.hour ==15:
             v.execute(q,opt_seconds,opt_watchlist,rows,date_lim)
 
-pilot_monitor(5,w.all_watchlist,10,w.opt_list)
-# repeat_monitor(5, all_watchlist)
+# pilot_monitor(5,w.all_watchlist,10,w.opt_list)
+repeat_monitor(5, w.all_watchlist)
 # Checks orders
 # print(monitor([],True))
 
