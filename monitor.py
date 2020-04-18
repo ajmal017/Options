@@ -1,3 +1,4 @@
+import os
 import time
 import data as d
 from questrade_api import Questrade
@@ -8,11 +9,17 @@ import vol as v
 
 pd.set_option('display.max_rows', 500)
 
+t = os.getenv("QUESTRADE_KEY")
+
+# noinspection PySimplifyBooleanCheck
+
+
 def monitor(q, watchlist=[], orders=False):
     if orders:
         my_orders = d.retrieve_orders(q)
         df = d.retrieve_symbolid_list(q, my_orders)
-        df = df[['lastTradePrice', 'openPrice', 'limitPrice', 'pct_chg', 'abs_limit', 'pct_limit']]
+        df = df[['lastTradePrice', 'openPrice', 'limitPrice',
+                 'pct_chg', 'abs_limit', 'pct_limit']]
         df = df.sort_values('pct_limit', ascending=True)
     elif watchlist == []:
         return 'Error'
@@ -41,7 +48,6 @@ def execute(q, freq, watchlist, orders):
 
 
 def repeat_monitor(freq, watchlist, orders=False):
-    t = input('Please enter api key:\n')
     q = Questrade(grant_type=t, refresh_token=t)
     seconds = freq * 60
     print("Snapping data every %s minutes" % (freq))
@@ -51,18 +57,19 @@ def repeat_monitor(freq, watchlist, orders=False):
         execute(q, seconds, watchlist, orders)
 
 
-def pilot_monitor(pos_freq, pos_watchlist,opt_freq,opt_watchlist,rows = 10,date_lim = 4, orders=False):
-    t = input('Please enter api key:\n')
+def pilot_monitor(pos_freq, pos_watchlist, opt_freq, opt_watchlist, rows=10, date_lim=4, orders=False):
     q = Questrade(grant_type=t, refresh_token=t)
     pos_seconds = pos_freq * 60
     opt_seconds = opt_freq * 60
-    print("Snapping positions data every %s minutes and options data every s% minutes" % (pos_freq,opt_freq))
+    print("Snapping positions data every %s minutes and options data every s% minutes" % (
+        pos_freq, opt_freq))
     while True:
         now = datetime.now().strftime("%H:%M:%S")
         print("Current time is %s" % (now))
         execute(q, pos_seconds, pos_watchlist, orders)
-        if now.hour ==15:
-            v.execute(q,opt_seconds,opt_watchlist,rows,date_lim)
+        if now.hour == 15:
+            v.execute(q, opt_seconds, opt_watchlist, rows, date_lim)
+
 
 # pilot_monitor(5,w.all_watchlist,10,w.opt_list)
 repeat_monitor(5, w.all_watchlist)
