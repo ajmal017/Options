@@ -25,11 +25,12 @@ ind_reits = ['NXR.UN.TO','DIR.UN.TO','SMU.UN.TO','WPT.UN.TO']
 us_lt = ['DPZ', 'AMT', 'SQ', 'HD', 'MU', 'AMD', 'MA', 'F', 'JPM', 'A', 'GS', 'TTD', 'TGT', 'SBUX', 'JNJ', 'TWTR', 'BAC',
          'NVDA', 'ETFC',
          'V', 'MCD', 'MSFT', 'ADBE', 'WMT', 'GM', 'AAPL', 'BRK.B', 'CVGW', 'SNAP', 'TU', 'FB', 'TSLA']
+active_trade = ['TWTR','NET','FB','SNAP','GOOG','INTC','BPY.UN.TO','WELL','MSFT','SQ','AAPL','AKAM','WIX','TSLA','ETSY','NFLX','WMT','TDOC','ZM','SHOP.TO']
 
-my_port = ['HEXO.TO','ZM','SHOP.TO','TDOC','BPY.UN.TO','MI.UN.TO','HND.TO','MRT.UN.TO','CZR']
+my_port = ['HEXO.TO','AHPI','SHRM.CN','WELL.TO','OTEX.TO','DSG.TO','ATD.B.TO','MRT.UN.TO','CZR','WELL.TO','HR.UN.TO']
 
-all_watchlist = [five_g, biotech, rona, disc, cad_tech, cad_lt, us_lt,misc_reits,mixed_reits,retail_reits,ind_reits,
+all_watchlist = [five_g, biotech, rona, disc, cad_tech, cad_lt, us_lt,misc_reits,mixed_reits,retail_reits,ind_reits, active_trade,
                  my_port]
 
-opt_list = u.remove_duplicates(list(itertools.chain.from_iterable([biotech,rona,disc])))
+opt_list = u.remove_duplicates(list(itertools.chain.from_iterable([biotech,rona,disc,active_trade])))
 tot_list = u.remove_duplicates(list(itertools.chain.from_iterable(all_watchlist)))

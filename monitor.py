@@ -61,8 +61,7 @@ def pilot_monitor(pos_freq, pos_watchlist, opt_freq, opt_watchlist, rows=10, dat
     q = Questrade(grant_type=t, refresh_token=t)
     pos_seconds = pos_freq * 60
     opt_seconds = opt_freq * 60
-    print("Snapping positions data every %s minutes and options data every s% minutes" % (
-        pos_freq, opt_freq))
+    print("Snapping positions data every %s minutes and options data every %s minutes" % (pos_freq, opt_freq))
     while True:
         now = datetime.now().strftime("%H:%M:%S")
         print("Current time is %s" % (now))
