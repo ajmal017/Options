@@ -32,7 +32,7 @@ def monitor(q, watchlist=[], orders=False):
 def execute(q, freq, watchlist, orders):
     print('Order Monitor')
     try:
-        print(monitor([], True))
+        print(monitor(q,[], True))
     except:
         print('Current Orders Error')
     if any(isinstance(el, list) for el in watchlist):
@@ -73,7 +73,6 @@ def pilot_monitor(pos_freq, pos_watchlist, opt_freq, opt_watchlist, rows=10, dat
 # pilot_monitor(5,w.all_watchlist,10,w.opt_list)
 if __name__=="__main__":
     # repeat_monitor(5, w.all_watchlist)
-    print(monitor([], True))
     pilot_monitor(5,w.all_watchlist,10,w.opt_list)
 
 # Checks orders
