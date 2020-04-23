@@ -57,9 +57,9 @@ def execute(q, freq, watchlist, rows, date_lim=4):
             try:
                 surface_dif, now_omon, surface_now = vol_comparison(q, i, rows, date_lim)
                 pct_chg, cur_price = d.get_bod_pchg(q, i)
-                print('Vol Surface for %s' % watchlist)
+                print('Vol Surface for %s' % i)
                 print(surface_now)
-                print('Vol Surface Changes for %s' % watchlist)
+                print('Vol Surface Changes for %s' % i)
                 print(surface_dif)
                 print('Price is currently {price}, changing {chg} for {stock}'.format(cur_price, pct_chg, i))
                 print('Volume monitor for %s' % i)

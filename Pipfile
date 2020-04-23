@@ -9,9 +9,9 @@ autopep8 = "*"
 
 [packages]
 questrade-api = "*"
-pandas = "*"
 mibian = "*"
 scipy = "*"
+pandas = "*"
 
 [requires]
 python_version = "3.8"
