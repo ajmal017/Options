@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1eb1bc16-95d6-45c8-94a5-60dc48ad4363" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Options.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Options.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vol.py" beforeDir="false" afterPath="$PROJECT_DIR$/vol.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,6 +219,10 @@
       <screen x="0" y="23" width="1920" height="1053" />
     </state>
     <state x="469" y="188" key="SettingsEditor/0.23.1920.1053/1920.23.1440.877@0.23.1920.1053" timestamp="1587170158358" />
+    <state x="735" y="226" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1587651713207">
+      <screen x="0" y="23" width="1920" height="1057" />
+    </state>
+    <state x="735" y="226" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.23.1920.1057/1920.23.1440.873@0.23.1920.1057" timestamp="1587651713207" />
     <state x="450" y="23" width="960" height="1053" key="dock-window-1" timestamp="1587479611711">
       <screen x="0" y="23" width="1920" height="1053" />
     </state>

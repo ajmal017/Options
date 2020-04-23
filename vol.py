@@ -13,7 +13,7 @@ pd.set_option('display.width', 1000)
 
 cols = ['symbol', 'lastTradePrice', 'volume', 'openInterest',
         'CallPut', 'Expiry', 'strike', 'moneyness']
-
+t = os.getenv("QKEY")
 
 def get_vol_surface_omon(q, ticker, date_lim='all', rows=0, bod=False):
     opt_df = d.opt_data(q, ticker, date_lim, bod)
@@ -44,7 +44,7 @@ def vol_comparison(q, ticker, rows=0, date_lim=4):
         q, ticker, date_lim, rows, bod=True)
     surface_now, now_omon = get_vol_surface_omon(q, ticker, date_lim, rows)
     surface_dif = surface_now - surface_bod
-    return surface_dif, now_omon
+    return surface_dif, now_omon, surface_now
 
 
 ''' Only pass in one list of tickers; computationally much more expensive'''
@@ -55,33 +55,31 @@ def execute(q, freq, watchlist, rows, date_lim=4):
         for i in watchlist:
             print("Current ticker is %s" % i)
             try:
-                surface_dif, now_omon = vol_comparison(q, i, rows, date_lim)
-                pct_chg = d.get_bod_pchg(q, i)
-                print('Near Term Vol Surface Chg for %s' % i)
+                surface_dif, now_omon, surface_now = vol_comparison(q, i, rows, date_lim)
+                pct_chg, cur_price = d.get_bod_pchg(q, i)
+                print('Vol Surface for %s' % watchlist)
+                print(surface_now)
+                print('Vol Surface Changes for %s' % watchlist)
                 print(surface_dif)
-                print('Price change for %s' % i)
-                print(pct_chg)
+                print('Price is currently {price}, changing {chg} for {stock}'.format(cur_price, pct_chg, i))
                 print('Volume monitor for %s' % i)
                 print(now_omon)
             except:
                 print('Error for ticker is %s' % i)
     else:
-        surface_dif, now_omon = vol_comparison(q, watchlist, date_lim)
-        pct_chg = d.get_bod_pchg(q, watchlist)
+        surface_dif, now_omon, surface_now = vol_comparison(q, watchlist, date_lim)
+        pct_chg, cur_price = d.get_bod_pchg(q, watchlist)
         print('Vol Surface for %s' % watchlist)
+        print(surface_now)
+        print('Vol Surface Changes for %s' % watchlist)
         print(surface_dif)
-        print('Price change for %s' % watchlist)
-        print(pct_chg)
+        print('Price is currently {price}, changing {chg} for {stock}'.format(cur_price,pct_chg,watchlist))
         print('Volume monitor for %s' % watchlist)
         print(now_omon)
     time.sleep(freq)
 
-
-# print(vol_comparison('FB', 3))
 '''Note, for the OMON function, we have to set up a recording method before we can look at chg in OI; can look at OI
 and volume for now for each strike (ie. most traded; perhaps look into most traded thats not ATM'''
-
-t = os.getenv("QUESTRADE_KEY")
 
 
 def opt_monitor(freq, watchlist, rows=10, date_lim=0):
@@ -94,4 +92,4 @@ def opt_monitor(freq, watchlist, rows=10, date_lim=0):
         execute(q, seconds, watchlist, rows, date_lim)
 
 if __name__=="__main__":
-    opt_monitor(5, w.biotech, date_lim=4)
+    opt_monitor(5, w.opt_list, date_lim=4)

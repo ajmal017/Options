@@ -30,9 +30,9 @@ def retrieve_positions(q):
 
 def retrieve_orders(q):
     acc_num = q.accounts['accounts'][0]['number']
-    positions = q.account_orders(acc_num)['orders']
+    positions = q.account_orders(acc_num,startTime='2020-04-10T00:00:00-0')['orders']
     position_df = pd.DataFrame(positions)
-    print(position_df)
+    position_df = position_df[position_df['state'] == 'Accepted']
     position_df = position_df[['symbol', 'symbolId', 'side', 'limitPrice']].set_index(('symbol'))
     return position_df
 
@@ -131,7 +131,7 @@ def get_bod_pchg(q,ticker):
     cur_price = cur_price_data['lastTradePrice']
     open_price = cur_price_data['openPrice']
     pchg =  cur_price/open_price - 1
-    return pchg
+    return pchg, cur_price
 
 
 def opt_data(q, ticker, date_lim='all', bod=False):
