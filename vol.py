@@ -84,7 +84,7 @@ and volume for now for each strike (ie. most traded; perhaps look into most trad
 t = os.getenv("QUESTRADE_KEY")
 
 
-def opt_monitor(freq, watchlist, rows=0, date_lim=0):
+def opt_monitor(freq, watchlist, rows=10, date_lim=0):
     q = Questrade(grant_type=t, refresh_token=t)
     seconds = freq*60
     print("Snapping vol data every %s minutes" % freq)
@@ -93,5 +93,5 @@ def opt_monitor(freq, watchlist, rows=0, date_lim=0):
         print("Current time is %s" % (now))
         execute(q, seconds, watchlist, rows, date_lim)
 
-
-opt_monitor(5, w.biotech, date_lim=4)
+if __name__=="__main__":
+    opt_monitor(5, w.biotech, date_lim=4)

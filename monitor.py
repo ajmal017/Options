@@ -9,7 +9,7 @@ import vol as v
 
 pd.set_option('display.max_rows', 500)
 
-t = os.getenv("QUESTRADE_KEY")
+t = os.getenv("QKEY")
 
 # noinspection PySimplifyBooleanCheck
 
@@ -71,9 +71,11 @@ def pilot_monitor(pos_freq, pos_watchlist, opt_freq, opt_watchlist, rows=10, dat
 
 
 # pilot_monitor(5,w.all_watchlist,10,w.opt_list)
-repeat_monitor(5, w.all_watchlist)
+if __name__=="__main__":
+    repeat_monitor(5, w.all_watchlist)
+
 # Checks orders
 # print(monitor([],True))
 
-# Gives snap of watchlist
-# print(monitor(five_g))
+# Gives snap of a watchlist watchlist
+# print(monitor(w.five_g))
