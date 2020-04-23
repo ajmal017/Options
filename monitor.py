@@ -70,7 +70,6 @@ def pilot_monitor(pos_freq, pos_watchlist, opt_freq, opt_watchlist, rows=10, dat
             v.execute(q, opt_seconds, opt_watchlist, rows, date_lim)
 
 
-# pilot_monitor(5,w.all_watchlist,10,w.opt_list)
 if __name__=="__main__":
     # repeat_monitor(5, w.all_watchlist)
     pilot_monitor(5,w.all_watchlist,10,w.opt_list)
