@@ -21,13 +21,13 @@ cad_lt = ['VFF.TO', 'BIP.UN.TO', 'ACB.TO', 'DOL.TO', 'HMMJ.TO', 'WEED.TO', 'PZA.
 misc_reits = ['DLR', 'SPG', 'WELL', 'NVU.UN.TO', 'IIP.UN.TO', 'MI.UN.TO', 'CSH.UN.TO','AP.UN.TO','D.UN.TO']
 mixed_reits=['CUF.UN.TO','REF.UN.TO','CRR.UN.TO','GRT.UN.TO','HR.UN.TO','MRT.UN.TO','PRV.UN.TO','TNT.UN.TO','BPY.UN.TO']
 retail_reits = ['CRT.UN.TO','REI.UN.TO','SRT.UN.TO','PLZ.UN.TO','SRU.UN.TO']
-ind_reits = ['NXR.UN.TO','DIR.UN.TO','SMU.UN.TO','WPT.UN.TO']
+ind_reits = ['NXR.UN.VN','DIR.UN.TO','SMU.UN.TO','WIR.UN.TO']
 us_lt = ['DPZ', 'AMT', 'SQ', 'HD', 'MU', 'AMD', 'MA', 'F', 'JPM', 'A', 'GS', 'TTD', 'TGT', 'SBUX', 'JNJ', 'TWTR', 'BAC',
          'NVDA', 'ETFC',
          'V', 'MCD', 'MSFT', 'ADBE', 'WMT', 'GM', 'AAPL', 'BRK.B', 'CVGW', 'SNAP', 'TU', 'FB', 'TSLA']
 active_trade = ['TWTR','NET','FB','SNAP','GOOG','INTC','BPY.UN.TO','WELL','MSFT','SQ','AAPL','AKAM','WIX','TSLA','ETSY','NFLX','WMT','TDOC','ZM','SHOP.TO']
 
-my_port = ['HEXO.TO','AHPI','SHRM.CN','WELL.TO','OTEX.TO','DSG.TO','ATD.B.TO','MRT.UN.TO','CZR','WELL.TO','HR.UN.TO']
+my_port = ['HEXO.TO','AHPI','SHRM.CN','WELL.TO','OTEX.TO','DSG.TO','T.TO','MRT.UN.TO','CZR','HLF.TO','HR.UN.TO']
 
 all_watchlist = [five_g, biotech, rona, disc, cad_tech, cad_lt, us_lt,misc_reits,mixed_reits,retail_reits,ind_reits, active_trade,
                  my_port]

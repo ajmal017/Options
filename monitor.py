@@ -72,6 +72,7 @@ def pilot_monitor(pos_freq, pos_watchlist, opt_freq, opt_watchlist, rows=10, dat
 
 if __name__=="__main__":
     # repeat_monitor(5, w.all_watchlist)
+    t='UCPTMRl4eW1s7AGRJ1FkmjXUZDdbJCMR0'
     pilot_monitor(5,w.all_watchlist,10,w.opt_list)
 
 # Checks orders
