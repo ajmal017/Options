@@ -56,12 +56,14 @@ def execute(q, freq, watchlist, rows, date_lim=4):
             print("Current ticker is %s" % i)
             try:
                 surface_dif, now_omon, surface_now = vol_comparison(q, i, rows, date_lim)
+                print(surface_dif, now_omon, surface_now)
                 pct_chg, cur_price = d.get_bod_pchg(q, i)
+                print(pct_chg, cur_price)
                 print('Vol Surface for %s' % i)
                 print(surface_now)
                 print('Vol Surface Changes for %s' % i)
                 print(surface_dif)
-                print('Price is currently {price}, changing {chg} for {stock}'.format(cur_price, pct_chg, i))
+                print('Price is currently {0}, changing {1} for {2}'.format("{:.2}".format(cur_price), "{:.2%}".format(pct_chg), i))
                 print('Volume monitor for %s' % i)
                 print(now_omon)
             except:
@@ -73,7 +75,7 @@ def execute(q, freq, watchlist, rows, date_lim=4):
         print(surface_now)
         print('Vol Surface Changes for %s' % watchlist)
         print(surface_dif)
-        print('Price is currently {price}, changing {chg} for {stock}'.format(cur_price,pct_chg,watchlist))
+        print('Price is currently {0}, changing {1} for {2}'.format("{:.2}".format(cur_price),"{:.2%}".format(pct_chg),watchlist))
         print('Volume monitor for %s' % watchlist)
         print(now_omon)
     time.sleep(freq)
@@ -92,4 +94,5 @@ def opt_monitor(freq, watchlist, rows=10, date_lim=0):
         execute(q, seconds, watchlist, rows, date_lim)
 
 if __name__=="__main__":
+    # t = 'wD5QvC7uAtmy9ruaBMUkIrInASN9QQ6c0'
     opt_monitor(5, w.opt_list, date_lim=4)

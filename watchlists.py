@@ -32,5 +32,6 @@ my_port = ['HEXO.TO','AHPI','SHRM.CN','WELL.TO','OTEX.TO','DSG.TO','T.TO','MRT.U
 all_watchlist = [five_g, biotech, rona, disc, cad_tech, cad_lt, us_lt,misc_reits,mixed_reits,retail_reits,ind_reits, active_trade,
                  my_port]
 
-opt_list = u.remove_duplicates(list(itertools.chain.from_iterable([biotech,rona,disc,active_trade])))
+# opt_list = u.remove_duplicates(list(itertools.chain.from_iterable([biotech,rona,disc,active_trade])))
+opt_list = u.remove_duplicates(list(itertools.chain.from_iterable([rona,disc,active_trade])))
 tot_list = u.remove_duplicates(list(itertools.chain.from_iterable(all_watchlist)))

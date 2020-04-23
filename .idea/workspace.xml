@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1eb1bc16-95d6-45c8-94a5-60dc48ad4363" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/data.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monitor.py" beforeDir="false" afterPath="$PROJECT_DIR$/monitor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vol.py" beforeDir="false" afterPath="$PROJECT_DIR$/vol.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/watchlists.py" beforeDir="false" afterPath="$PROJECT_DIR$/watchlists.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,7 +44,7 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.monitor">
+  <component name="RunManager" selected="Python.vol">
     <configuration name="data" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Options" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -126,7 +129,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="vol_surface" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="watchlists" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Options" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -138,7 +141,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/vol_surface.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/watchlists.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -152,15 +155,15 @@
       <item itemvalue="Python.monitor" />
       <item itemvalue="Python.utils" />
       <item itemvalue="Python.vol" />
-      <item itemvalue="Python.vol_surface" />
+      <item itemvalue="Python.watchlists" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.monitor" />
         <item itemvalue="Python.vol" />
+        <item itemvalue="Python.watchlists" />
+        <item itemvalue="Python.monitor" />
         <item itemvalue="Python.data" />
         <item itemvalue="Python.utils" />
-        <item itemvalue="Python.vol_surface" />
       </list>
     </recent_temporary>
   </component>
@@ -196,7 +199,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587659835447</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="updated watchlists">
+      <created>1587660013037</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1587660013037</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -214,7 +224,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fixed pilot testing watchlist" />
     <MESSAGE value="fixed current orders" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed current orders" />
+    <MESSAGE value="updated watchlists" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated watchlists" />
   </component>
   <component name="WindowStateProjectService">
     <state x="26" y="205" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587169139849">
@@ -225,30 +236,34 @@
       <screen x="0" y="23" width="1920" height="1053" />
     </state>
     <state x="214" y="358" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1920.1053/1920.23.1440.877@0.23.1920.1053" timestamp="1587169786815" />
-    <state x="547" y="125" key="CommitChangelistDialog2" timestamp="1587659835165">
+    <state x="547" y="125" key="CommitChangelistDialog2" timestamp="1587660012667">
       <screen x="0" y="23" width="1920" height="1053" />
     </state>
-    <state x="547" y="125" key="CommitChangelistDialog2/0.23.1920.1053/1920.23.1440.877@0.23.1920.1053" timestamp="1587659835165" />
+    <state x="547" y="125" key="CommitChangelistDialog2/0.23.1920.1053/1920.23.1440.877@0.23.1920.1053" timestamp="1587660012667" />
     <state x="547" y="125" key="CommitChangelistDialog2/0.23.1920.1057/1920.23.1440.873@0.23.1920.1057" timestamp="1587659592196" />
-    <state width="960" height="1003" key="GridCell.Tab.0.bottom" timestamp="1587659876272">
-      <screen x="0" y="23" width="1920" height="1053" />
+    <state width="1440" height="823" key="GridCell.Tab.0.bottom" timestamp="1587673749484">
+      <screen x="0" y="23" width="1440" height="873" />
     </state>
-    <state width="960" height="1003" key="GridCell.Tab.0.bottom/0.23.1920.1053/1920.23.1440.877@0.23.1920.1053" timestamp="1587659876272" />
+    <state width="1440" height="823" key="GridCell.Tab.0.bottom/0.23.1440.873@0.23.1440.873" timestamp="1587673749484" />
+    <state width="960" height="1003" key="GridCell.Tab.0.bottom/0.23.1920.1053/1920.23.1440.877@0.23.1920.1053" timestamp="1587660038503" />
     <state width="960" height="1003" key="GridCell.Tab.0.bottom/0.23.1920.1057/1920.23.1440.873@0.23.1920.1057" timestamp="1587659262105" />
-    <state width="960" height="1003" key="GridCell.Tab.0.center" timestamp="1587659876271">
-      <screen x="0" y="23" width="1920" height="1053" />
+    <state width="1440" height="823" key="GridCell.Tab.0.center" timestamp="1587673749483">
+      <screen x="0" y="23" width="1440" height="873" />
     </state>
-    <state width="960" height="1003" key="GridCell.Tab.0.center/0.23.1920.1053/1920.23.1440.877@0.23.1920.1053" timestamp="1587659876271" />
+    <state width="1440" height="823" key="GridCell.Tab.0.center/0.23.1440.873@0.23.1440.873" timestamp="1587673749483" />
+    <state width="960" height="1003" key="GridCell.Tab.0.center/0.23.1920.1053/1920.23.1440.877@0.23.1920.1053" timestamp="1587660038502" />
     <state width="960" height="1003" key="GridCell.Tab.0.center/0.23.1920.1057/1920.23.1440.873@0.23.1920.1057" timestamp="1587659262103" />
-    <state width="960" height="1003" key="GridCell.Tab.0.left" timestamp="1587659876270">
-      <screen x="0" y="23" width="1920" height="1053" />
+    <state width="1440" height="823" key="GridCell.Tab.0.left" timestamp="1587673749482">
+      <screen x="0" y="23" width="1440" height="873" />
     </state>
-    <state width="960" height="1003" key="GridCell.Tab.0.left/0.23.1920.1053/1920.23.1440.877@0.23.1920.1053" timestamp="1587659876270" />
+    <state width="1440" height="823" key="GridCell.Tab.0.left/0.23.1440.873@0.23.1440.873" timestamp="1587673749482" />
+    <state width="960" height="1003" key="GridCell.Tab.0.left/0.23.1920.1053/1920.23.1440.877@0.23.1920.1053" timestamp="1587660038501" />
     <state width="960" height="1003" key="GridCell.Tab.0.left/0.23.1920.1057/1920.23.1440.873@0.23.1920.1057" timestamp="1587659262102" />
-    <state width="960" height="1003" key="GridCell.Tab.0.right" timestamp="1587659876272">
-      <screen x="0" y="23" width="1920" height="1053" />
+    <state width="1440" height="823" key="GridCell.Tab.0.right" timestamp="1587673749484">
+      <screen x="0" y="23" width="1440" height="873" />
     </state>
-    <state width="960" height="1003" key="GridCell.Tab.0.right/0.23.1920.1053/1920.23.1440.877@0.23.1920.1053" timestamp="1587659876272" />
+    <state width="1440" height="823" key="GridCell.Tab.0.right/0.23.1440.873@0.23.1440.873" timestamp="1587673749484" />
+    <state width="960" height="1003" key="GridCell.Tab.0.right/0.23.1920.1053/1920.23.1440.877@0.23.1920.1053" timestamp="1587660038503" />
     <state width="960" height="1003" key="GridCell.Tab.0.right/0.23.1920.1057/1920.23.1440.873@0.23.1920.1057" timestamp="1587659262104" />
     <state x="469" y="189" key="SettingsEditor" timestamp="1587659557774">
       <screen x="0" y="23" width="1920" height="1057" />

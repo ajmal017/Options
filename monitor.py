@@ -13,7 +13,6 @@ t = os.getenv("QKEY")
 
 # noinspection PySimplifyBooleanCheck
 
-
 def monitor(q, watchlist=[], orders=False):
     if orders:
         my_orders = d.retrieve_orders(q)
@@ -21,11 +20,14 @@ def monitor(q, watchlist=[], orders=False):
         df = df[['lastTradePrice', 'openPrice', 'limitPrice',
                  'pct_chg', 'abs_limit', 'pct_limit']]
         df = df.sort_values('pct_limit', ascending=True)
+        df['pct_limit']=df['pct_limit'].apply(lambda x: "{:.2%}".format(float(x)))
     elif watchlist == []:
         return 'Error'
     else:
         df = d.retrieve_symbolid_list(q, watchlist, True)
         df = df.sort_values('pct_chg', ascending=True)
+    df['openPrice'] = df['openPrice'].apply(lambda x: round(x,2))
+    df['pct_chg']=df['pct_chg'].apply(lambda x: "{:.2%}".format(float(x)))
     return df
 
 
@@ -63,20 +65,21 @@ def pilot_monitor(pos_freq, pos_watchlist, opt_freq, opt_watchlist, rows=10, dat
     opt_seconds = opt_freq * 60
     print("Snapping positions data every %s minutes and options data every %s minutes" % (pos_freq, opt_freq))
     while True:
-        now = datetime.now().strftime("%H:%M:%S")
+        now = datetime.now().strftime("%H")
         print("Current time is %s" % (now))
         execute(q, pos_seconds, pos_watchlist, orders)
-        if now.hour == 15:
+        print(int(now))
+        if int(now) == 15:
+            print('Executing Vols')
             v.execute(q, opt_seconds, opt_watchlist, rows, date_lim)
 
 
 if __name__=="__main__":
     # repeat_monitor(5, w.all_watchlist)
-    t='UCPTMRl4eW1s7AGRJ1FkmjXUZDdbJCMR0'
+    # t='Jge6kxEjTYRbizvHf4CwAwGxUyfCwKhi0'
     pilot_monitor(5,w.all_watchlist,10,w.opt_list)
 
 # Checks orders
-# print(monitor([],True))
 
 # Gives snap of a watchlist watchlist
 # print(monitor(w.five_g))

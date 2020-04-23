@@ -76,13 +76,13 @@ def retrieve_symbolid_list(q, df, alist = False):
     if not alist:
         merge_df = df_live.merge(df, how='inner', left_index=True, right_index=True)
         final_df = merge_df
-        final_df['pct_chg'] = ((merge_df['lastTradePrice'] / merge_df['openPrice']) - 1) * 100
+        final_df['pct_chg'] = ((merge_df['lastTradePrice'] / merge_df['openPrice']) - 1)
     else:
         final_df = df_live
-        final_df['pct_chg'] = ((df_live['lastTradePrice'] / df_live['openPrice']) - 1) * 100
+        final_df['pct_chg'] = ((df_live['lastTradePrice'] / df_live['openPrice']) - 1)
     if not alist:
         final_df['abs_limit'] = abs(merge_df['lastTradePrice']-merge_df['limitPrice'])
-        final_df['pct_limit'] = abs(merge_df['limitPrice']/merge_df['lastTradePrice'] - 1)*100
+        final_df['pct_limit'] = abs(merge_df['limitPrice']/merge_df['lastTradePrice'] - 1)
     return final_df
 
 
