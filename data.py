@@ -86,10 +86,9 @@ def retrieve_symbolid_list(q, df, alist = False):
     return final_df
 
 
-'''Returns a dataframe with each ticker's option codes for each expiry'''
+'''Returns a dataframe with each ticker's option codes for each expiry and its strike'''
 
-
-def extract_opt_chain(q, ticker, date_lim='all', bod=False):
+def extract_opt_data(q, ticker, date_lim='all', bod=False):
     symbol_id = extract_symbolid(q, ticker)
     cur_price, cur_yield = get_price_yield(q, ticker, bod)
     opt_chain_ids = q.symbol_options(symbol_id)['optionChain']
@@ -135,7 +134,7 @@ def get_bod_pchg(q,ticker):
 
 
 def opt_data(q, ticker, date_lim='all', bod=False):
-    opt_df = extract_opt_chain(q, ticker, date_lim)
+    opt_df = extract_opt_data(q, ticker, date_lim)
     cur_price, cur_yield = get_price_yield(q, ticker, bod)
     expiry_list = list(opt_df['Expiry'].unique())
     master_df = pd.DataFrame()
@@ -169,3 +168,8 @@ def opt_data(q, ticker, date_lim='all', bod=False):
     return master_df[cols]
 
 ## Make Watch List Snapper as this works
+
+### To build previous vol surfaces:
+### Access to past options: q.markets_candles(29949513, interval='OneDay',startTime='2020-04-15T09:30:00.583000-05:00')
+### Gives us candlesticks (can use their close and open to price)
+## Notes: adjust dates, need dates in the ISO format, look for a way to get rates dynamically for rf

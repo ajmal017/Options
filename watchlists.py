@@ -33,5 +33,21 @@ all_watchlist = [five_g, biotech, rona, disc, cad_tech, cad_lt, us_lt,misc_reits
                  my_port]
 
 # opt_list = u.remove_duplicates(list(itertools.chain.from_iterable([biotech,rona,disc,active_trade])))
-opt_list = u.remove_duplicates(list(itertools.chain.from_iterable([rona,disc,active_trade])))
+# opt_list = u.remove_duplicates(list(itertools.chain.from_iterable([rona,disc,active_trade])))
+# opt_list = ['AMD','AKAM','CCL','DHT','CZR','RCL','BA','RRR','BPY','ALK','DIS','NVAX','TDOC','ZM','WIX','WORK','MSFT','XLE','FB']
+# opt_list = ['XLE','XLB','XLI','XLY','XLP','XLV','XLF','SMH','XTL','XLU','IYR','CCL','DHT','CZR','RCL','BA','TDOC','ZM']
+# opt_list = ['NVAX','LAKE']
+'''Sector Lists for a deeper look'''
+xle=['CVX','XOM','PSX','COP','COP','EOG','VLO','KMI','MPC','PXD','OXY','HAL','SLB']
+xlb = ['LIN','NEM','APD','ECL','SHW','DD','DOW','PPG','BLL','CTVA','FCX','IP']
+xli = ['UNP','HON','RTX','LMT','MMM','BA','UPS','CAT','GE','CSX','DE','NOC']
+xly=['AMZN','HD','MCD','NKE','SBUX','LOW','TJX','TGT','EBAY','YUM','MAR','CMG','MGM','CCL']
+xlp = ['PG','PEP','KO','WMT','MO','PM','COST','CL','GIS','STZ','CLX','KMB']
+xlv = ['JNJ','UNH','PFE','MRK','ABT','BMY','TMO','AMGN','CI','ANTM','GILD','CVS']
+xlf = ['BRK.B','JPM','BAC','WFC','C','GS','SPGI','CME','NLK','ICE','AXP']
+smh=['TSM','INTC','NVDA','ASML','AVGO','TXN','AMD','QCOM','XLNX','SWKS','MU']
+xtl=['BAND','VG','TMUS','ANET','CIEN','LITE','CCOI','FFIV','CSCO','JNPR','UI']
+xlu= ['NEE','D','DUK','SO','AEP','EXC','SRE','WEC','ED','ES','PEG','FE','AWK']
+iyr = ['AMT','PLD','CCI','AQIX','DLR','PSA','WELL','SPG','O','PSA','BXP','CBRE']
+
 tot_list = u.remove_duplicates(list(itertools.chain.from_iterable(all_watchlist)))

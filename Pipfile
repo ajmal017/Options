@@ -12,6 +12,7 @@ questrade-api = "*"
 mibian = "*"
 scipy = "*"
 pandas = "*"
+mysql = "*"
 
 [requires]
 python_version = "3.8"

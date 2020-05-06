@@ -56,7 +56,7 @@ def execute(q, freq, watchlist, rows, date_lim=4):
             print("Current ticker is %s" % i)
             try:
                 surface_dif, now_omon, surface_now = vol_comparison(q, i, rows, date_lim)
-                print(surface_dif, now_omon, surface_now)
+                # print(surface_dif, now_omon, surface_now)
                 pct_chg, cur_price = d.get_bod_pchg(q, i)
                 print(pct_chg, cur_price)
                 print('Vol Surface for %s' % i)
@@ -94,5 +94,6 @@ def opt_monitor(freq, watchlist, rows=10, date_lim=0):
         execute(q, seconds, watchlist, rows, date_lim)
 
 if __name__=="__main__":
-    # t = 'wD5QvC7uAtmy9ruaBMUkIrInASN9QQ6c0'
-    opt_monitor(5, w.opt_list, date_lim=4)
+    t = 'Ae0mZ_sJpMD7--d7MsLPj6ZWk3j3WMkV0'
+    # opt_monitor(60, w.opt_list, date_lim=4)
+    opt_monitor(60, w.xlb, date_lim=4)
