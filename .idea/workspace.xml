@@ -1,13 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/Change-1" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="1eb1bc16-95d6-45c8-94a5-60dc48ad4363" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitor.py" beforeDir="false" afterPath="$PROJECT_DIR$/monitor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vol.py" beforeDir="false" afterPath="$PROJECT_DIR$/vol.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/watchlists.py" beforeDir="false" afterPath="$PROJECT_DIR$/watchlists.py" afterDir="false" />
     </list>
+    <list id="b8cda1bc-7e4f-4adb-953d-26db439a2e09" name="Revert &quot;fixed monitoring issues&quot;" comment="Revert &quot;fixed monitoring issues&quot;&#10;&#10;This reverts commit 3780886b" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,7 +47,13 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Change-1" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="ProjectId" id="1W3BlhlTR4NdLb8iJZ20W8eeJIj" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -159,11 +191,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.vol" />
         <item itemvalue="Python.watchlists" />
+        <item itemvalue="Python.vol" />
+        <item itemvalue="Python.utils" />
         <item itemvalue="Python.monitor" />
         <item itemvalue="Python.data" />
-        <item itemvalue="Python.utils" />
       </list>
     </recent_temporary>
   </component>
@@ -214,7 +246,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/Change-1" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -236,11 +280,16 @@
       <screen x="0" y="23" width="1920" height="1053" />
     </state>
     <state x="214" y="358" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1920.1053/1920.23.1440.877@0.23.1920.1053" timestamp="1587169786815" />
-    <state x="547" y="125" key="CommitChangelistDialog2" timestamp="1587660012667">
-      <screen x="0" y="23" width="1920" height="1053" />
+    <state x="410" y="23" width="799" height="877" key="CommitChangelistDialog2" timestamp="1588784934876">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
+    <state x="410" y="23" width="799" height="877" key="CommitChangelistDialog2/0.23.1440.877@0.23.1440.877" timestamp="1588784934876" />
     <state x="547" y="125" key="CommitChangelistDialog2/0.23.1920.1053/1920.23.1440.877@0.23.1920.1053" timestamp="1587660012667" />
     <state x="547" y="125" key="CommitChangelistDialog2/0.23.1920.1057/1920.23.1440.873@0.23.1920.1057" timestamp="1587659592196" />
+    <state x="425" y="238" width="1240" height="677" key="DiffContextDialog" timestamp="1588791823350">
+      <screen x="0" y="23" width="1920" height="1057" />
+    </state>
+    <state x="425" y="238" width="1240" height="677" key="DiffContextDialog/0.23.1920.1057/1920.23.1440.877@0.23.1920.1057" timestamp="1588791823350" />
     <state width="1440" height="823" key="GridCell.Tab.0.bottom" timestamp="1587673749484">
       <screen x="0" y="23" width="1440" height="873" />
     </state>
@@ -270,6 +319,14 @@
     </state>
     <state x="469" y="188" key="SettingsEditor/0.23.1920.1053/1920.23.1440.877@0.23.1920.1053" timestamp="1587170158358" />
     <state x="469" y="189" key="SettingsEditor/0.23.1920.1057/1920.23.1440.873@0.23.1920.1057" timestamp="1587659557774" />
+    <state x="449" y="362" key="VCS.ChangelistChooser" timestamp="1588791699974">
+      <screen x="0" y="23" width="1920" height="1057" />
+    </state>
+    <state x="449" y="362" key="VCS.ChangelistChooser/0.23.1920.1057/1920.23.1440.877@0.23.1920.1057" timestamp="1588791699974" />
+    <state x="320" y="201" key="Vcs.Push.Dialog.v2" timestamp="1588785147532">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="320" y="201" key="Vcs.Push.Dialog.v2/0.23.1440.877@0.23.1440.877" timestamp="1588785147532" />
     <state x="735" y="226" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1587651713207">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
