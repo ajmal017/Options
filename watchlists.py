@@ -36,7 +36,7 @@ all_watchlist = [five_g, biotech, rona, disc, cad_tech, cad_lt, us_lt,misc_reits
 # opt_list = u.remove_duplicates(list(itertools.chain.from_iterable([rona,disc,active_trade])))
 # opt_list = ['AMD','AKAM','CCL','DHT','CZR','RCL','BA','RRR','BPY','ALK','DIS','NVAX','TDOC','ZM','WIX','WORK','MSFT','XLE','FB']
 # opt_list = ['XLE','XLB','XLI','XLY','XLP','XLV','XLF','SMH','XTL','XLU','IYR','CCL','DHT','CZR','RCL','BA','TDOC','ZM']
-# opt_list = ['NVAX','LAKE']
+opt_list = ['RPD','PFPT','TTD','TRIP','DBX','AGN','ROKU','NET','GPRO','MCHP','QRVO','YELP','ZG']
 '''Sector Lists for a deeper look'''
 xle=['CVX','XOM','PSX','COP','COP','EOG','VLO','KMI','MPC','PXD','OXY','HAL','SLB']
 xlb = ['LIN','NEM','APD','ECL','SHW','DD','DOW','PPG','BLL','CTVA','FCX','IP']

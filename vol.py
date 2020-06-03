@@ -16,7 +16,7 @@ cols = ['symbol', 'lastTradePrice', 'volume', 'openInterest',
 t = os.getenv("QKEY")
 
 def get_vol_surface_omon(q, ticker, date_lim='all', rows=0, bod=False):
-    opt_df = d.opt_data(q, ticker, date_lim, bod)
+    opt_df = d.get_vol_surface(q, ticker, date_lim, bod)
     omon_df = omon(opt_df, rows, sort_by='volume')
     vol_surface = u.vol_surface_data(1.2, 0.8, 0.05, opt_df)
     return vol_surface, omon_df
@@ -94,6 +94,6 @@ def opt_monitor(freq, watchlist, rows=10, date_lim=0):
         execute(q, seconds, watchlist, rows, date_lim)
 
 if __name__=="__main__":
-    t = 'Ae0mZ_sJpMD7--d7MsLPj6ZWk3j3WMkV0'
-    # opt_monitor(60, w.opt_list, date_lim=4)
-    opt_monitor(60, w.xlb, date_lim=4)
+    t = 'mkPk8h2uJ1L1LAFTtSVg6PFar5K-c3Lb0'
+    opt_monitor(60, w.opt_list, date_lim=4)
+    # opt_monitor(60, w.xlb, date_lim=4)

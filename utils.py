@@ -2,10 +2,17 @@ import datetime
 import numpy as np
 import pandas as pd
 import itertools
+from datetime import timedelta
 
 today = datetime.datetime.today().date()
 skew_storage_path = '/Users/djiang3/Desktop/Options Storage/Vol Skew Storage/'
 misc_storage_path = '/Users/djiang3/Desktop/Options Storage/Misc/'
+
+def chg_date(date_str,num_days):
+    datetime_fmt = date_converter(date_str)
+    new_date = datetime_fmt + timedelta(days=num_days)
+    str_date = new_date.strftime('%Y-%m-%d')
+    return str_date
 
 
 def date_converter(date_str):
