@@ -2,6 +2,8 @@ import pandas as pd
 import datetime
 import IV_solver as iv
 import utils as u
+import yfinance as yf
+import concurrent.futures
 
 '''To initialize, run the following code:
 from questrade_api import Questrade
@@ -13,17 +15,24 @@ import data as d
 # cols = ['symbol', 'strike', 'Expiry', 'CallPut', 'bidPrice', 'askPrice', 'lastTradePrice', 'openPrice', 'volume',
 #         'openInterest', 'delta', 'gamma', 'vega', 'theta', 'moneyness', 'Days to Expiry', 'IV','delta_opt', 'gamma_opt', 'vega_opt', 'theta_opt']
 
-cols = ['symbol', 'strike', 'Expiry', 'CallPut', 'bidPrice', 'askPrice', 'lastTradePrice', 'openPrice', 'volume',
+cols = ['symbol', 'strike', 'Expiry', 'CallPut', 'bidPrice', 'askPrice', 'lastTradePrice', 'AdjPrice', 'openPrice', 'volume',
         'openInterest', 'delta', 'gamma', 'vega', 'theta', 'moneyness', 'Days to Expiry', 'IV']
-scrape_list = ['underlying', 'symbol', 'symbolId', 'bidPrice', 'askPrice', 'lastTradePrice', 'volume', 'delta', 'gamma',
+scrape_list = ['underlying', 'symbol', 'symbolId', 'bidPrice', 'askPrice', 'lastTradePrice','openPrice', 'volume', 'delta', 'gamma',
                'theta', 'vega', 'rho', 'openInterest', 'Expiry', 'CallPut', 'strike', 'moneyness', 'Days to Expiry']
 
 today = datetime.datetime.today().date()
 # str_today = today.strftime('%Y-%m-%d')
 iso = 'T09:30:00.583000-05:00'
 
-'''Returns a symbol id for a given ticker; code below is used to ensure that it is unique for each ticker'''
+def get_rf_rate(date = True):
+    if date == True:
+        date = today.strftime('%Y-%m-%d')
+    rf = yf.Ticker('^IRX')
+    hist = rf.history(start=date)
+    rf_rate = float(hist['Close'][0])/100
+    return rf_rate
 
+'''Returns a symbol id for a given ticker; code below is used to ensure that it is unique for each ticker'''
 
 def retrieve_positions(q):
     acc_num = q.accounts['accounts'][0]['number']
@@ -192,17 +201,18 @@ def get_opt_df(q, ticker, start_date=True, date_lim='all', bod=False):
     master_df['moneyness'] = master_df['strike'].apply(lambda x: float(x) / float(cur_price))
     if start_date is not True:
         if bod is False:
-            master_df['price'] = master_df['symbolId'].apply(
+            master_df['Adj Price'] = master_df['symbolId'].apply(
                 lambda x: retrieve_past_price(q, x, start_date, 'close'))
             master_df['Days to Expiry'] = master_df['Expiry'].apply(
                 lambda x: u.bus_days(u.date_converter(start_date), u.date_converter(x)))
         else:
-            master_df['price'] = master_df['symbolId'].apply(
+            master_df['Adj Price'] = master_df['symbolId'].apply(
                 lambda x: retrieve_past_price(q, x, start_date, 'open'))
             master_df['Days to Expiry'] = master_df['Expiry'].apply(
                 lambda x: u.bus_days(u.date_converter(start_date), u.date_converter(x)) + 1)
     else:
         master_df['Days to Expiry'] = master_df['Expiry'].apply(lambda x: u.bus_days(today, u.date_converter(x)))
+        master_df['Adj Price'] = master_df.apply(lambda x: u.stale_price_proxy(x['bidPrice'],x['askPrice'],x['lastTradePrice',x['volume']]))
     return master_df
 
 
@@ -212,27 +222,31 @@ def scrape_opt_data(q, alist):
         df = get_opt_df(q, i, start_date=True, bod=False)
         df = df[scrape_list]
         master_df = master_df.append(df)
+    master_df = master_df[master_df['openInterest']>30]
     return master_df
 
+'''start_date is either true or YYYY-MM-DD'''
 
 def get_vol_surface(q, ticker, start_date=True, date_lim='all', bod=False):
     master_df = get_opt_df(q, ticker, start_date, date_lim, bod)
     master_df = master_df[(master_df['Days to Expiry'] >= 1)]
     cur_price, cur_yield = get_price_yield(q, ticker, start_date, bod)
     if start_date is not True:
+        rf = get_rf_rate(start_date)
         master_df['IV'] = master_df.apply(
-            lambda x: iv.iv_solver(x['price'], x['CallPut'], cur_price, x['strike'], 0.001, cur_yield,
+            lambda x: iv.iv_solver(x['Adj Price'], x['CallPut'], cur_price, x['strike'], rf, cur_yield,
                                    x['Days to Expiry']), axis=1)
     else:
+        rf = get_rf_rate()
         if bod:
             master_df['Adj Days to Exp'] = master_df['Days to Expiry'].apply(lambda x: x + 1)
             master_df['IV'] = master_df.apply(
-                lambda x: iv.iv_solver(x['openPrice'], x['CallPut'], cur_price, x['strike'], 0.001, cur_yield,
+                lambda x: iv.iv_solver(x['openPrice'], x['CallPut'], cur_price, x['strike'], rf, cur_yield,
                                        x['Adj Days to Exp']), axis=1)
         else:
             master_df['Adj Days to Exp'] = master_df['Days to Expiry'].apply(lambda x: x + u.pct_day_passed())
             master_df['IV'] = master_df.apply(
-                lambda x: iv.iv_solver(x['lastTradePrice'], x['CallPut'], cur_price, x['strike'], 0.001, cur_yield,
+                lambda x: iv.iv_solver(x['Adj Price'], x['CallPut'], cur_price, x['strike'], rf, cur_yield,
                                        x['Adj Days to Exp']), axis=1)
     master_df.dropna(subset=['IV'], inplace=True)
     master_df = master_df[master_df['IV'] > 1]
@@ -245,3 +259,5 @@ def get_vol_surface(q, ticker, start_date=True, date_lim='all', bod=False):
 ### Access to past options: q.markets_candles(29949513, interval='OneDay',startTime='2020-04-15T09:30:00.583000-05:00')
 ### Gives us candlesticks (can use their close and open to price)
 ## Notes: adjust dates, need dates in the ISO format, look for a way to get rates dynamically for rf
+
+# with concurrent.futures.ThreadPoolExecutor() as executor:

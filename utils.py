@@ -167,4 +167,8 @@ def vol_surface_data(top, bottom, inc, opt_df):
         master_df = master_df.merge(store_df, how='inner', left_index=True, right_index=True)
     return master_df
 
-# vol_surface_data(1.2, 0.8, 0.05, opt_df)
+def stale_price_proxy(bid,ask,volume,last):
+    if volume <= 20:
+        return float((bid+ask)/2)
+    else:
+        return float(last)

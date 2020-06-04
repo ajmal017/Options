@@ -13,6 +13,7 @@ mibian = "*"
 scipy = "*"
 pandas = "*"
 mysql = "*"
+yfinance = "*"
 
 [requires]
 python_version = "3.8"
