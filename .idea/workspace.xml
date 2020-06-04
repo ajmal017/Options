@@ -26,13 +26,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1eb1bc16-95d6-45c8-94a5-60dc48ad4363" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
-    </list>
+    <list default="true" id="1eb1bc16-95d6-45c8-94a5-60dc48ad4363" name="Default Changelist" comment="" />
     <list id="b8cda1bc-7e4f-4adb-953d-26db439a2e09" name="Revert &quot;fixed monitoring issues&quot;" comment="Revert &quot;fixed monitoring issues&quot;&#10;&#10;This reverts commit 3780886b" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,28 +71,7 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.concurrency play">
-    <configuration name="concurrency play" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Options" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/concurrency play.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.data_scrapper">
     <configuration name="data" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Options" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -112,6 +85,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="data_scrapper" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Options" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data_scrapper.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -188,11 +182,11 @@
       <item itemvalue="Python.utils" />
       <item itemvalue="Python.vol" />
       <item itemvalue="Python.watchlists" />
-      <item itemvalue="Python.concurrency play" />
+      <item itemvalue="Python.data_scrapper" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.concurrency play" />
+        <item itemvalue="Python.data_scrapper" />
         <item itemvalue="Python.data" />
         <item itemvalue="Python.utils" />
         <item itemvalue="Python.vol" />
@@ -246,7 +240,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591146199456</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="updated watchlists">
+      <created>1591297261747</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1591297261747</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -288,13 +289,13 @@
       <screen x="0" y="23" width="1920" height="1053" />
     </state>
     <state x="214" y="358" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1920.1053/1920.23.1440.877@0.23.1920.1053" timestamp="1587169786815" />
-    <state x="547" y="23" width="799" height="877" key="CommitChangelistDialog2" timestamp="1591146199131">
+    <state x="547" y="23" width="799" height="877" key="CommitChangelistDialog2" timestamp="1591297261503">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state x="410" y="23" width="799" height="877" key="CommitChangelistDialog2/0.23.1440.877@0.23.1440.877" timestamp="1588784934876" />
     <state x="547" y="125" key="CommitChangelistDialog2/0.23.1920.1053/1920.23.1440.877@0.23.1920.1053" timestamp="1587660012667" />
     <state x="547" y="125" key="CommitChangelistDialog2/0.23.1920.1057/1920.23.1440.873@0.23.1920.1057" timestamp="1587659592196" />
-    <state x="547" y="23" key="CommitChangelistDialog2/0.23.1920.1057/1920.23.1440.877@0.23.1920.1057" timestamp="1591146199131" />
+    <state x="547" y="23" key="CommitChangelistDialog2/0.23.1920.1057/1920.23.1440.877@0.23.1920.1057" timestamp="1591297261503" />
     <state x="425" y="238" width="1240" height="677" key="DiffContextDialog" timestamp="1588791823350">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
