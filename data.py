@@ -3,7 +3,6 @@ import datetime
 import IV_solver as iv
 import utils as u
 import yfinance as yf
-import concurrent.futures
 
 '''To initialize, run the following code:
 from questrade_api import Questrade
@@ -168,7 +167,10 @@ def get_price_yield(q, ticker, prev_date=True, bod=False):
             cur_price = retrieve_past_price(q, sym_id, prev_date, 'close')
         else:
             cur_price = retrieve_past_price(q, sym_id, prev_date, 'open')
-        cur_yield = cur_yield_nom / cur_price
+        try:
+            cur_yield = cur_yield_nom / cur_price
+        except Exception as e:
+            cur_yield = 0
     return cur_price, cur_yield
 
 
