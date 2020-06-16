@@ -26,13 +26,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1eb1bc16-95d6-45c8-94a5-60dc48ad4363" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/concurrent_vol.py" beforeDir="false" afterPath="$PROJECT_DIR$/concurrent_vol.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_scrapper.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_scrapper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vol.py" beforeDir="false" afterPath="$PROJECT_DIR$/vol.py" afterDir="false" />
-    </list>
+    <list default="true" id="1eb1bc16-95d6-45c8-94a5-60dc48ad4363" name="Default Changelist" comment="" />
     <list id="b8cda1bc-7e4f-4adb-953d-26db439a2e09" name="Revert &quot;fixed monitoring issues&quot;" comment="Revert &quot;fixed monitoring issues&quot;&#10;&#10;This reverts commit 3780886b" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -281,7 +275,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591387339765</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="concurrency done">
+      <created>1592270907137</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1592270907137</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -314,7 +315,8 @@
     <MESSAGE value="updated watchlists" />
     <MESSAGE value="data scrapper with concurrency v1" />
     <MESSAGE value="untest with concurrency v1" />
-    <option name="LAST_COMMIT_MESSAGE" value="untest with concurrency v1" />
+    <MESSAGE value="concurrency done" />
+    <option name="LAST_COMMIT_MESSAGE" value="concurrency done" />
   </component>
   <component name="WindowStateProjectService">
     <state x="26" y="205" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587169139849">
@@ -325,13 +327,13 @@
       <screen x="0" y="23" width="1920" height="1053" />
     </state>
     <state x="214" y="358" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1920.1053/1920.23.1440.877@0.23.1920.1053" timestamp="1587169786815" />
-    <state x="547" y="23" width="799" height="877" key="CommitChangelistDialog2" timestamp="1591387339550">
+    <state x="547" y="23" width="799" height="877" key="CommitChangelistDialog2" timestamp="1592270906603">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state x="410" y="23" width="799" height="877" key="CommitChangelistDialog2/0.23.1440.877@0.23.1440.877" timestamp="1588784934876" />
     <state x="547" y="125" key="CommitChangelistDialog2/0.23.1920.1053/1920.23.1440.877@0.23.1920.1053" timestamp="1587660012667" />
     <state x="547" y="125" key="CommitChangelistDialog2/0.23.1920.1057/1920.23.1440.873@0.23.1920.1057" timestamp="1587659592196" />
-    <state x="547" y="23" key="CommitChangelistDialog2/0.23.1920.1057/1920.23.1440.877@0.23.1920.1057" timestamp="1591387339550" />
+    <state x="547" y="23" key="CommitChangelistDialog2/0.23.1920.1057/1920.23.1440.877@0.23.1920.1057" timestamp="1592270906603" />
     <state x="425" y="238" width="1240" height="677" key="DiffContextDialog" timestamp="1588791823350">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
