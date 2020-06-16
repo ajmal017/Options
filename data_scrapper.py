@@ -21,11 +21,11 @@ def scrape_data(stock_list):
         master_df = pd.DataFrame()
         for i in f:
             master_df = master_df.append(i)
-    print(master_df)
     return master_df
 
+'''Change t into the new api code and click the play button (or run this)'''
 if __name__=="__main__":
-    t = 'qgoB_-clitsBIWKFvpVyMjhl5cCFeq_j0'
+    t = '3jQuwhHwyr6N36Y5aps1RQPY6sq_bwHi0'
     q = Questrade(grant_type=t, refresh_token=t)
     start = time.perf_counter()
     watchlist = list(itertools.chain.from_iterable(w.all_watchlist))
