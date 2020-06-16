@@ -3,7 +3,6 @@ import data as d
 from questrade_api import Questrade
 import pandas as pd
 import watchlists as w
-import itertools
 import utils as u
 import time
 
@@ -25,11 +24,10 @@ def scrape_data(stock_list):
 
 '''Change t into the new api code and click the play button (or run this)'''
 if __name__=="__main__":
-    t = '3jQuwhHwyr6N36Y5aps1RQPY6sq_bwHi0'
+    t = 'N0uSFhB7ElKM4N6g4Fl0jPp_1rPz2AGV0'
     q = Questrade(grant_type=t, refresh_token=t)
     start = time.perf_counter()
-    watchlist = list(itertools.chain.from_iterable(w.all_watchlist))
-    df = scrape_data(watchlist)
+    df = scrape_data(w.track_list)
     u.snap_vols(df,'Daily Snap')
     end = time.perf_counter()
     print(f'Finish in {round(end-start,2)} seconds')

@@ -1,6 +1,14 @@
 import utils as u
 import itertools
+import pandas as pd
 
+ticker_file = pd.read_csv(r'/Users/djiang3/Desktop/Options Storage/Tickers.csv')
+
+nasdaq = ticker_file['NASDAQ Ticker'].dropna().to_list()
+sptsx = ticker_file['SPTSX60 Ticker'].dropna().to_list()
+sp = ticker_file['S&P Ticker'].dropna().to_list()
+
+track_list = list(itertools.chain.from_iterable([nasdaq,sptsx,sp]))
 
 five_g = ['INTC', 'QCOM', 'VZ', 'XLNX', 'NVDA', 'ADI', 'TMUS', 'MRVL', 'EXF.TO', 'AVGO', 'RCI.B.TO', 'FTG.TO']
 cad_tech = ['QUIS.VN', 'CDAY.TO', 'SHOP.TO', 'REAL.TO', 'CSU.TO', 'TCS.TO', 'BRAG.VN']
@@ -27,13 +35,9 @@ us_lt = ['DPZ', 'AMT', 'SQ', 'HD', 'MU', 'AMD', 'MA', 'F', 'JPM', 'A', 'GS', 'TT
          'V', 'MCD', 'MSFT', 'ADBE', 'WMT', 'GM', 'AAPL', 'BRK.B', 'CVGW', 'SNAP', 'TU', 'FB', 'TSLA']
 active_trade = ['TWTR','NET','FB','SNAP','GOOG','INTC','BPY.UN.TO','WELL','MSFT','SQ','AAPL','AKAM','WIX','TSLA','ETSY','NFLX','WMT','TDOC','ZM','SHOP.TO']
 
-my_port = ['HEXO.TO','AHPI','SHRM.CN','WELL.TO','OTEX.TO','DSG.TO','T.TO','MRT.UN.TO','CZR','HLF.TO','HR.UN.TO']
-
 all_watchlist = [five_g, biotech, rona, disc, cad_tech, cad_lt, us_lt,misc_reits,mixed_reits,retail_reits,ind_reits, active_trade,
                  my_port]
 
-# opt_list = u.remove_duplicates(list(itertools.chain.from_iterable([biotech,rona,disc,active_trade])))
-# opt_list = u.remove_duplicates(list(itertools.chain.from_iterable([rona,disc,active_trade])))
 # opt_list = ['AMD','AKAM','CCL','DHT','CZR','RCL','BA','RRR','BPY','ALK','DIS','NVAX','TDOC','ZM','WIX','WORK','MSFT','XLE','FB']
 # opt_list = ['XLE','XLB','XLI','XLY','XLP','XLV','XLF','SMH','XTL','XLU','IYR','CCL','DHT','CZR','RCL','BA','TDOC','ZM']
 opt_list = ['RPD','PFPT','TTD','TRIP','DBX','AGN','ROKU','NET','GPRO','MCHP','QRVO','YELP','ZG']
