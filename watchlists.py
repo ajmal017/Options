@@ -35,8 +35,7 @@ us_lt = ['DPZ', 'AMT', 'SQ', 'HD', 'MU', 'AMD', 'MA', 'F', 'JPM', 'A', 'GS', 'TT
          'V', 'MCD', 'MSFT', 'ADBE', 'WMT', 'GM', 'AAPL', 'BRK.B', 'CVGW', 'SNAP', 'TU', 'FB', 'TSLA']
 active_trade = ['TWTR','NET','FB','SNAP','GOOG','INTC','BPY.UN.TO','WELL','MSFT','SQ','AAPL','AKAM','WIX','TSLA','ETSY','NFLX','WMT','TDOC','ZM','SHOP.TO']
 
-all_watchlist = [five_g, biotech, rona, disc, cad_tech, cad_lt, us_lt,misc_reits,mixed_reits,retail_reits,ind_reits, active_trade,
-                 my_port]
+all_watchlist = [five_g, biotech, rona, disc, cad_tech, cad_lt, us_lt,misc_reits,mixed_reits,retail_reits,ind_reits, active_trade]
 
 # opt_list = ['AMD','AKAM','CCL','DHT','CZR','RCL','BA','RRR','BPY','ALK','DIS','NVAX','TDOC','ZM','WIX','WORK','MSFT','XLE','FB']
 # opt_list = ['XLE','XLB','XLI','XLY','XLP','XLV','XLF','SMH','XTL','XLU','IYR','CCL','DHT','CZR','RCL','BA','TDOC','ZM']

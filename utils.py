@@ -35,7 +35,7 @@ def snap_vols(table_to_excel, name):
         path = skew_storage_path
     else:
         path = misc_storage_path
-    date = datetime.datetime.today().strftime('%Y-%m-%d-%H')
+    date = datetime.datetime.today().strftime('%Y-%m-%d')
     file_name = name + ' ' + date + '.csv'
     table_to_excel.to_csv(path + file_name)
 

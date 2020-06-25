@@ -239,7 +239,7 @@ def scrape_opt_data(q, alist):
         df = get_opt_df(q, i, start_date=True, bod=False)
         df = df[scrape_list]
         master_df = master_df.append(df)
-    master_df = master_df[master_df['openInterest'] > 30]
+    # master_df = master_df[master_df['openInterest'] > 30]
     return master_df
 
 
