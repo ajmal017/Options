@@ -24,7 +24,7 @@ def scrape_data(stock_list):
 
 '''Change t into the new api code and click the play button (or run this)'''
 if __name__=="__main__":
-    t = 'S_dRTuABsc9HdVE0kc-biKLYJAuVOjBA0'
+    t = 'QnyWpNVssyMzDo-S2f54nUoLGDuMAeiJ0'
     q = Questrade(grant_type=t, refresh_token=t)
     start = time.perf_counter()
     df = scrape_data(w.track_list)

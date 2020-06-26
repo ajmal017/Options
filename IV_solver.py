@@ -1,8 +1,6 @@
 from scipy.stats import norm
 import mibian
 
-'''http://www.codeandfinance.com/finding-implied-vol.html'''
-
 n = norm.pdf
 N = norm.cdf
 
